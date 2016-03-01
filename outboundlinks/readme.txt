@@ -1,5 +1,5 @@
 === OutBoundLinks ===
-Contributors: pawaryogesh1989
+Contributors: pawaryogesh1989, clarionwpdeveloper
 Tags: outboundlinks, external post link
 Requires at least: 3.0.1
 Tested up to: 4.4.2
