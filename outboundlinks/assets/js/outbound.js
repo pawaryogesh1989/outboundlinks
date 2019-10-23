@@ -1,4 +1,7 @@
-//Script will be ready when the whole document is loaded
+/**
+ * A jQuery document ready block
+ * @param {type} param
+ */
 jQuery(document).ready(function () {
 
     //Adding Class to the Outbound Links

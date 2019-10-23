@@ -1,48 +1,40 @@
 <?php
 
 //Main Plugin Class
-
-class OutBound_Links {
+class OutBound_Links
+{
 
     static $instance;
 
     //Constructor of the Class
-    public function __construct() {
+    function __construct()
+    {
 
         self::$instance = $this;
 
-        add_action('wp_enqueue_scripts', array(
-            $this,
-            'OutBound_Links_Scripts'
-        ));
-        add_filter('the_content', array(
-            $this,
-            'add_query_vars_filter'
-        ));
+        add_action('wp_enqueue_scripts', array($this, 'outBoundScripts'));
+        add_filter('the_content', array($this, 'addQueryVarsFilter'));
 
-        register_activation_hook('outboundlinks/classes/class.outbound.links.php', array(
-            $this,
-            'hook_activate'
-        ));
-        register_deactivation_hook('outboundlinks/classes/class.outbound.links.php', array(
-            $this,
-            'hook_deactivate'
-        ));
+        register_activation_hook('outboundlinks/classes/class.outbound.links.php', array($this, 'outBoundHookActivate'));
+        register_deactivation_hook('outboundlinks/classes/class.outbound.links.php', array($this, 'outBoundHookDeactivate'));
     }
 
-    /* Function to include scripts necessary for the plugin.
-     * Scripts are saved in the JS folder of the plugin.
+    /**
+     * Function to include scripts necessary for the plugin.
      */
-
-    public function OutBound_Links_Scripts() {
-        wp_enqueue_script('outbound-script', AUTH_PLUGINS_PATH . '/outboundlinks/js/outbound.js', array(), '1.0.0', true);
+    public function outBoundScripts()
+    {
+        wp_enqueue_script('outbound-script', plugins_url('assets/js/outbound.js', __DIR__), array('jquery'), '2.0.0', true);
     }
 
-    /* Function to add the Outbound Rel tag and Target __blank
-     * 
+    /**
+     * Function to add the Outbound Rel tag and Target __blank
+     * @global type $post
+     * @param type $content
+     * @return type
      */
-
-    public function add_query_vars_filter($content) {
+    public function addQueryVarsFilter($content)
+    {
         global $post;
 
         if (!is_singular()) {
@@ -77,30 +69,35 @@ class OutBound_Links {
         return $content;
     }
 
-    /* Plugin Acivation Hook
-     * 
+    /**
+     * Plugin Activation Hook
+     * @return type
      */
+    function outBoundHookActivate()
+    {
 
-    function hook_activate() {
-
-        if (!current_user_can('activate_plugins'))
+        if (!current_user_can('activate_plugins')) {
             return;
+        }
+
         $plugin = isset($_REQUEST['plugin']) ? $_REQUEST['plugin'] : '';
         check_admin_referer("activate-plugin_{$plugin}");
     }
 
-    /* Plugin Deactivation Hook
-     * 
+    /**
+     * Plugin Deactivation Hook
+     * @return type
      */
-
-    function hook_deactivate() {
+    function outBoundHookDeactivate()
+    {
 
         if (!current_user_can('activate_plugins'))
             return;
         $plugin = isset($_REQUEST['plugin']) ? $_REQUEST['plugin'] : '';
         check_admin_referer("deactivate-plugin_{$plugin}");
     }
-
 }
+
+new OutBound_Links();
 
 ?>
