@@ -1,9 +1,10 @@
 === OutBoundLinks ===
 Contributors: pawaryogesh1989, clarionwpdeveloper
 Tags: outboundlinks, external post link, Outbound links, external links, seo, outbound seo, external links seo, Outbound links seo
-Requires at least: 4.6
-Tested up to: 5.2.4
+Requires at least: 5.0 or higher
+Tested up to: 5.6
 Stable tag: 5.0
+PHP Version: 5.6 or higher
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,6 +21,9 @@ This plugin opens external links present in post in a new tab with query string 
 * Links referring within the site are excluded.
 
 == Changelog ==
+
+= 3.0.0 =
+* Compatibility changes to make it work with latest WordPress version.
 
 = 2.0.0 =
 * Compatibility changes to make it work with latest WordPress version.

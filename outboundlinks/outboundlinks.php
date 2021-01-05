@@ -6,7 +6,7 @@
   Plugin Name: OutboundLinks
   Plugin URI: http://clariontechnologies.co.in
   Description: OutboundLinks
-  Version: 2.0.0
+  Version: 3.0.0
   Author: Yogesh Pawar
   Author URI: http://clariontechnologies.co.in
   License: GPLv2 or later
